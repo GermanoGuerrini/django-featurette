@@ -1,0 +1,13 @@
+language: python
+
+install:
+  - pip install tox 
+
+script:
+  - tox
+
+env:
+  - TOXENV=django_1.5.X
+  - TOXENV=django_1.6.X
+  - TOXENV=django_1.7.X
+  - TOXENV=coverage

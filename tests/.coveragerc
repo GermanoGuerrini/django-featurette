@@ -1,0 +1,9 @@
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    def __unicode__
+    if self.debug:
+    if settings.DEBUG
+    raise AssertionError
+    raise NotImplementedError
