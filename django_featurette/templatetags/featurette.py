@@ -20,8 +20,8 @@ def do_feature(parser, token):
     nodelist = parser.parse(('endfeature',))
     parser.delete_first_token()
     tokens = token.contents.split()
-    if len(tokens) < 2:
-        error = "%r tag requires at least 1 argument." % tokens[0]
+    if len(tokens) != 2:
+        error = "%r tag requires a feature key argument." % tokens[0]
         raise template.TemplateSyntaxError(error)
     return FeatureNode(nodelist, tokens[1])
 

@@ -1,10 +1,10 @@
 import datetime
 
-from django.test import SimpleTestCase as BaseTestCase
+from django.test import SimpleTestCase
 from django.test import RequestFactory
 from django.contrib.auth import models
 from django.core.urlresolvers import reverse
-from django.template import Template, Context
+from django.template import Template, Context, TemplateSyntaxError
 
 from django_featurette.models import Feature
 from django_featurette.utils import (
@@ -12,7 +12,7 @@ from django_featurette.utils import (
     is_feature_enabled_for_user
 )
 
-class FeaturetteTest(BaseTestCase):
+class FeaturetteTest(SimpleTestCase):
 
     def setUp(self):
         self.user_a = models.User.objects.create_user(
@@ -139,3 +139,32 @@ class FeaturetteTest(BaseTestCase):
         request.user = self.user_b
         rendered = template.render(Context({'request': request}))
         self.assertEqual(rendered.strip(), 'Ok')
+
+    def test_template_tag_for_authenticated_user_but_no_features(self):
+        template = Template("""
+            {% load featurette%}
+            {% feature feature_a %}
+            Ok
+            {% endfeature %}
+        """)
+        factory = RequestFactory()
+        request = factory.get('/')
+        request.user = self.user_b
+        rendered = template.render(Context({'request': request}))
+        self.assertEqual(rendered.strip(), '')
+
+    def test_template_tag_no_args(self):
+        with self.assertRaises(TemplateSyntaxError):
+            template = Template("""
+                {% load featurette%}
+                {% feature %}{% endfeature %}
+            """)
+            template.render(Context({}))
+
+    def test_template_tag_too_many_args(self):
+        with self.assertRaises(TemplateSyntaxError):
+            template = Template("""
+                {% load featurette%}
+                {% feature feature_a feature_b %}{% endfeature %}
+            """)
+            template.render(Context({}))
