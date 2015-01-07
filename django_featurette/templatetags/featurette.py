@@ -11,7 +11,10 @@ def do_feature(parser, token):
     enabled for the currently authenticated user.
 
     Example:
-        {% load feature from featurette %}
+
+    .. code-block:: html+django
+
+        {% load featurette %}
         {% feature my_feature_key %}
             You get this because you have been
             selected among billion of users
