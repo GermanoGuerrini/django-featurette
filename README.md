@@ -6,3 +6,4 @@ Django Featurette
 
 A simple Django application that helps to deploy web site features only to selected user.
 
+Documentation can be found at: http://django-featurette.readthedocs.org
