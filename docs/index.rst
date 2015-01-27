@@ -21,7 +21,17 @@ There are three ways to achieve that goals with Featurette:
 
 We are going to show all these methods in the :doc:`usage` guide.
 
-Contents:
+Requirements
+============
+
+======== ======
+Python 2 >= 2.7
+Python 3 >= 3.2
+Django   >= 1.6
+======== ======
+
+Contents
+========
 
 .. toctree::
    :maxdepth: 2
@@ -29,6 +39,7 @@ Contents:
    quickstart
    usage
    api
+   changelog
 
 Indices and tables
 ==================

@@ -7,6 +7,12 @@ script:
   - tox
 
 env:
-  - TOXENV=django_1.6.X
-  - TOXENV=django_1.7.X
+  - TOXENV=py27-django16
+  - TOXENV=py27-django17
+  - TOXENV=py32-django16
+  - TOXENV=py32-django17
+  - TOXENV=py33-django16
+  - TOXENV=py33-django17
+  - TOXENV=py34-django16
+  - TOXENV=py34-django17
   - TOXENV=coverage

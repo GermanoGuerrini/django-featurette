@@ -52,16 +52,16 @@ class FeaturetteTest(SimpleTestCase):
         self.feature_b.delete()
 
     def test_anonymous_get_enabled_features_for_user(self):
-        self.assertItemsEqual(get_enabled_features_for_user(self.user_a), [])
+        self.assertEqual(list(get_enabled_features_for_user(self.user_a)), [])
 
     def test_logged_1_get_enabled_features_for_user(self):
         self.client.login(username='walter', password='pwd')
-        self.assertItemsEqual(get_enabled_features_for_user(self.user_a), [])
+        self.assertEqual(list(get_enabled_features_for_user(self.user_a)), [])
         self.client.logout()
 
     def test_logged_2_get_enabled_features_for_user(self):
         self.client.login(username='jesse', password='pwd')
-        self.assertItemsEqual(get_enabled_features_for_user(self.user_b), [self.feature_b])
+        self.assertEqual(list(get_enabled_features_for_user(self.user_b)), [self.feature_b])
         self.client.logout()
 
     def test_is_feature_enabled_for_user(self):
