@@ -2,6 +2,10 @@
 Changelog
 =========
 
+Version 0.4
+=============
+* Added test support for Django 1.8
+
 Version 0.3
 =============
 * Added migrations files for Django 1.7+
