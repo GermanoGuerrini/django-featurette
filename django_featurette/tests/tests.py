@@ -14,6 +14,8 @@ from django_featurette.utils import (
 
 class FeaturetteTest(SimpleTestCase):
 
+    allow_database_queries = True
+
     def setUp(self):
         self.user_a = models.User.objects.create_user(
             username='walter',

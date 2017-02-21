@@ -9,7 +9,7 @@ def get_enabled_features_for_user(user):
     """
     enabled_features = []
     if user.is_authenticated():
-        now = datetime.datetime.now
+        now = datetime.datetime.now()
         enabled_features = Feature.objects.filter(is_active=True,
             start_date__lte=now, end_date__gte=now,
             group__in=user.groups.all())

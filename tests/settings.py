@@ -1,4 +1,4 @@
-from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS
+import os
 
 DATABASES = {
     'default': {
@@ -16,11 +16,23 @@ INSTALLED_APPS = (
     'django_featurette',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS += ("django.core.context_processors.request",)
-
 SECRET_KEY = 'sk'
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'APP_DIRS': True,
+        'DIRS': [
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates'),
+        ],
+         'OPTIONS': {
+                'context_processors': [
+                    'django.core.context_processors.request',
+                ],
+            },
+    },
+]
